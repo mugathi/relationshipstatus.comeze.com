@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js">
         </script><script>
     $(document).ready(function() {
@@ -25,9 +25,8 @@ function validate()
 		return true;
 	}
 	else {
-		document.getElementById('notice').innerHTML="enter valid email id";
-		return false;
-	} 
+		return true;
+	}
 }
 
 
@@ -36,12 +35,11 @@ function validate()
 </head>
 <body class='tot'>
 <div class="page-header">
-<h1 class="text-center"><span style="color: #800000">RELATIONSHIP STATUS</span></h1> 
-
+<h1 class="text-center"><span style="color:#ff5050">RELATIONSHIP STATUS</span></h1> 
 </div>
 
 <div class="text-center">
- <span style="color:black"><b>Enter your email Here... You will get a link which can be pasted to your friends 
+ <span style="color:black;"><b>Enter your email Here... You will get a link which can be pasted to your friends 
 scrapbook, email , blogs or forum. Whenever your friends  enter their Secret crush names, 
 it will be send immediately to your email inbox....</b></span>
 </div>
@@ -52,27 +50,27 @@ it will be send immediately to your email inbox....</b></span>
 </form>
 </div>
 </body>
-
 <?php
 if(isset($_POST['submit'])){
-$Mail=$_POST['mail'];
+$str=$_POST['mail'];
+$Mail = strtolower($str);
 include_once('connect.php');
 $sql = "SELECT * FROM users WHERE Email = '$Mail'";
 $res = mysqli_query($conn,$sql);
 $rec = mysqli_fetch_assoc($res);
 
-if( $rec['Value']==1) { header("location:Login.php");}
+if( $rec['Value']==1) {echo"<script>window.location.assign('Login.php')</script>";}
 else {
 	$Up="INSERT INTO users(Email,Value) VALUES ('$Mail',1)  ";
 	$exe=mysqli_query($conn,$Up);
 $hashed = base64_encode($Mail);
-header("location:share.php?param=$hashed");
+echo"<script>window.location.assign('share.php?param=$hashed')</script>";
 }
 }
 ?>
 
 <b class='text-left'>
-<span style='color:orange'>Devoloped By:</span><br/>
-<span style="color:red">Y.V.K.Sai Praveen<br/>
+<span style='color:red'>Developed By:</span><br/>
+<span style="color:black">Y.V.K.Sai Praveen<br/>
   Mugathi P@'1'<br/>
 All Rights &reg; Reserved</b></span>
