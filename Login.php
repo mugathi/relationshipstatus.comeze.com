@@ -26,8 +26,7 @@ function validate()
 		return true;
 	}
 	else {
-		document.getElementById('notice').innerHTML="enter valid email id";
-		return false;
+		return true;
 	}
 }
 
@@ -36,11 +35,11 @@ function validate()
 </head>
 <body class='tot'>
 <div class="page-header">
-<h1 class="text-center"><span style="color:yellow">RELATIONSHIP STATUS</span></h1> 
+<h1 class="text-center"><span style="color:#ff5050">RELATIONSHIP STATUS</span></h1> 
 <div class="text-center">
 <div class="btn-group">
-  <a href="Login.php" class="btn btn-primary">login</a>
-  <a href="Register.php" class="btn btn-primary">Prank ur friend</a>
+  <a 
+  <a href="Register.php" class="btn btn-primary">Prank Ur Friend</a>
 </div>
 </div>
 </div>
@@ -60,15 +59,15 @@ include_once('connect.php');
 @$que="SELECT Value FROM users WHERE Email='$Email'";
 @$exe=mysqli_query($conn,$que);
 $rec = mysqli_fetch_assoc($exe);
-$path="relation.php?param=".$hashed;
-if($rec['Value']==1){header("location:$path");}
+@$path="relation.php?param=".$hashed;
+if($rec['Value']==1){echo"<script>window.location.assign('$path')</script>";}
 else {echo"<div class='text-center'><b style='font-size:20px;margin-left:400px'> Ur Mail Hasn't Been Registered Yet .. Go to Prank ur Friend  and Register There to Continue...!!!</b></div>";}
 }
 ?>
 
 
 <b class='text-left'>
-<span style='color:orange'>Devoloped By:</span><br/>
-<span style="color:red">Y.V.K.Sai Praveen<br/>
+<span style='color:red'>Developed By:</span><br/>
+<span style="color:black">Y.V.K.Sai Praveen<br/>
   Mugathi P@'1'<br/>
 All Rights &reg; Reserved</b></span>
